@@ -21,16 +21,16 @@
     <el-main>
       <el-row>
         <el-col :span="5">
-          <user-andon andonType="PE" :taskId="TaskModel.Id" :user="TaskUser.PE"></user-andon>
+          <user-andon :andonType="1" :taskId="TaskModel.Id" :user="TaskUser.PE"></user-andon>
         </el-col>
         <el-col :span="5">
-          <user-andon andonType="IPQC" :taskId="TaskModel.Id" :user="TaskUser.IPQC"></user-andon>
+          <user-andon :andonType="2" :taskId="TaskModel.Id" :user="TaskUser.IPQC"></user-andon>
         </el-col>
         <el-col :span="5">
-          <user-andon andonType="Control" :taskId="TaskModel.Id" :user="TaskUser.Control"></user-andon>
+          <user-andon :andonType="3" :taskId="TaskModel.Id" :user="TaskUser.Control"></user-andon>
         </el-col>
         <el-col :span="5">
-          <user-andon andonType="Device" :taskId="TaskModel.Id" :user="TaskUser.Device"></user-andon>
+          <user-andon :andonType="4" :taskId="TaskModel.Id" :user="TaskUser.Device"></user-andon>
         </el-col>
         <el-col :span="4">5</el-col>
       </el-row>

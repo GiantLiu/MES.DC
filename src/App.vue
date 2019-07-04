@@ -35,6 +35,7 @@
             <el-menu-item>
               <a>
                 <img :src="BaseUrl + $root.CurUserModel.Photo">
+                <!-- <el-avatar shape="square" size="large" :src="BaseUrl + $root.CurUserModel.Photo"></el-avatar> -->
               </a>
             </el-menu-item>
             <el-menu-item>

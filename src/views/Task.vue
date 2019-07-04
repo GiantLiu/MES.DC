@@ -4,7 +4,7 @@
       <el-row>
         <el-col :span="12">
           <div class="grid-content bg-purple">
-            <el-date-picker v-model="QueryModel.qDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+            <el-date-picker v-model="QueryModel.qDate" type="date" value-format="yyyy-MM-dd" placeholder="选择日期时间"></el-date-picker>
             <el-button type="primary" @click="getListData">查询</el-button>
           </div>
         </el-col>
@@ -129,7 +129,7 @@ export default {
       var valString = value;
       switch (value) {
         case 1: valString = "编制"; break;
-        case 2: valString = "待下发"; break;
+        case 2: valString = "已下发"; break;
         case 3: valString = "执行中"; break;
         case 4: valString = "挂起"; break;
         case 5: valString = "中止"; break;
