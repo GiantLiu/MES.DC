@@ -32,11 +32,12 @@
       <el-card>
         <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
         <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
-        <el-button type="success" :disabled="CurAndonModel.Status != 2">关闭</el-button>
+        <el-button type="success" :disabled="CurAndonModel.Status != 2" @click="Config.ShowAndonDone = true">关闭</el-button>
       </el-card>
       <andon-start :taskId="Config.TaskId" :andonType="Config.AndonType" :targetUserId="Config.User.Id" :visible.sync="Config.ShowAndonStart" @andonchange="getAndon"></andon-start>
       <andon-confirm :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonConfirm" @andonchange="getAndon"></andon-confirm>
       <andon-process :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonProcess" @andonchange="getAndon"></andon-process>
+      <andon-done :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonDone" @andonchange="getAndon"></andon-done>
     </el-main>
   </el-container>
 </template>
@@ -46,10 +47,11 @@ import andonSvc from "../../api/andon"
 import andonStart from "./Start.vue"
 import andonConfirm from "./Confirm.vue"
 import andonProcess from "./Process.vue"
+import andonDone from "./Done.vue"
 export default {
   name: 'userAndon',
   components: {
-    andonStart, andonConfirm,andonProcess
+    andonStart, andonConfirm, andonProcess, andonDone
   },
   props: {
     andonType: Number,
@@ -58,8 +60,8 @@ export default {
   },
   data() {
     return {
-      Config: { AndonType: this.andonType, TaskId: this.taskId, User: this.user, CanAndon: false, 
-      ShowAndonStart: false, ShowAndonConfirm: false,ShowAndonProcess:false },
+      Config: {        AndonType: this.andonType, TaskId: this.taskId, User: this.user, CanAndon: false,
+        ShowAndonStart: false, ShowAndonConfirm: false, ShowAndonProcess: false, ShowAndonDone: false      },
       CurAndonModel: {}
     };
   },

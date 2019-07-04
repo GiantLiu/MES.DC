@@ -21,6 +21,14 @@ export default {
       QueryModel: { ProduceTaskId: this.taskId, AndonType: this.andonType, TargetUser: this.targetUserId, FaultRemark: "" }
     }
   },
+  watch: {
+    taskId(val, old) {
+      this.QueryModel.ProduceTaskId = val;
+    },
+    targetUserId(val, old) {
+      this.QueryModel.TargetUser = val;
+    }
+  },
   methods: {
     startAndon() {
       andonSvc.start(this.QueryModel).then(result => {

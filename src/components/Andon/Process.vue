@@ -21,6 +21,11 @@ export default {
       QueryModel: { workid: this.andonId, RepairFaultCourse: null, RepairInfo: "" }
     }
   },
+  watch: {
+    andonId(val, old) {
+      this.QueryModel.workid = val;
+    }
+  },
   methods: {
     processAndon() {
       andonSvc.process(this.QueryModel).then(result => {
