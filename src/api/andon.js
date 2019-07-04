@@ -8,6 +8,18 @@ let api = {
     },
     getAndon(model) {
         return service.post("/api/Andon/GetAndon", model);
+    },
+    start(model){
+        return service.post("/api/Andon/Start",model);
+    },
+    confirm(model){
+        return service.post("/api/Andon/Confirm",model);
+    },
+    process(model){
+        return service.post("/api/Andon/Process",model);
+    },
+    done(model){
+        return service.post("/api/Andon/Done",model);
     }
 };
 export default api;
