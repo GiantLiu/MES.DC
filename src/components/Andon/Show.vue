@@ -2,7 +2,7 @@
   <el-dialog title="Andon信息" :visible="visible" :before-close="dialogClose" width="30%">
     <el-form :model="AndonModel" label-width="80px">
       <el-form-item>
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="AndonModel.name"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
