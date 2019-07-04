@@ -6,33 +6,36 @@
           <span>{{andonTypeName}}</span>
           <el-button style="float: right; padding: 8px" type="warning" v-if="Config.CanAndon" @click="Config.ShowAndonStart=true">ANDON</el-button>
         </div>
-        <el-image style="height: 140px" :src="Config.User?Config.User.Photo:''" fit="fill">
+        <el-image style="height: 180px" :src="Config.ImgUrl+Config.User.Photo" fit="fill">
           <div slot="error" class="image-slot">
             <img src="../../assets/mes.jpg" />
           </div>
         </el-image>
       </el-card>
       <el-card>
-        <el-input placeholder="人员" :value="CurAndonModel.TargetName" :readonly="true">
-          <template slot="prepend">处理人员:</template>
-        </el-input>
-        <el-input placeholder="确认时间" :value="CurAndonModel.ResponseTime" :readonly="true">
-          <template slot="prepend">确认时间:</template>
-        </el-input>
-        <el-input placeholder="开始时间" :value="CurAndonModel.StartTime" :readonly="true">
-          <template slot="prepend">开始时间:</template>
-        </el-input>
-        <el-input placeholder="完成时间" :value="CurAndonModel.EndTime" :readonly="true">
-          <template slot="prepend">完成时间:</template>
-        </el-input>
-        <el-input placeholder="状态" :value="statusName" :readonly="true">
-          <template slot="prepend">当前状态:</template>
-        </el-input>
+        <el-form :model="CurAndonModel" label-width="80px" size="mini">
+          <el-form-item label="处理人员">
+            <el-input v-model="CurAndonModel.TargetName" :readonly="true" placeholder="处理人员"></el-input>
+          </el-form-item>
+          <el-form-item label="确认时间">
+            <el-input v-model="CurAndonModel.ResponseTime" :readonly="true" placeholder="确认时间"></el-input>
+          </el-form-item>
+          <el-form-item label="开始时间">
+            <el-input v-model="CurAndonModel.StartTime" :readonly="true" placeholder="开始时间"></el-input>
+          </el-form-item>
+          <el-form-item label="完成时间">
+            <el-input v-model="CurAndonModel.EndTime" :readonly="true" placeholder="完成时间"></el-input>
+          </el-form-item>
+          <el-form-item label="状态">
+            <el-input  :value="statusName" :readonly="true" placeholder="状态"></el-input>
+          </el-form-item>
+        </el-form>
       </el-card>
       <el-card>
         <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
         <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
         <el-button type="success" :disabled="CurAndonModel.Status != 2" @click="Config.ShowAndonDone = true">关闭</el-button>
+        <el-button type="info" @click="Config.ShowAndonDone = true">查看</el-button>
       </el-card>
       <andon-start :taskId="Config.TaskId" :andonType="Config.AndonType" :targetUserId="Config.User.Id" :visible.sync="Config.ShowAndonStart" @andonchange="getAndon"></andon-start>
       <andon-confirm :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonConfirm" @andonchange="getAndon"></andon-confirm>
@@ -60,7 +63,7 @@ export default {
   },
   data() {
     return {
-      Config: {        AndonType: this.andonType, TaskId: this.taskId, User: this.user, CanAndon: false,
+      Config: {        ImgUrl: process.env.VUE_APP_ImgUrl, AndonType: this.andonType, TaskId: this.taskId, User: this.user, CanAndon: false,
         ShowAndonStart: false, ShowAndonConfirm: false, ShowAndonProcess: false, ShowAndonDone: false      },
       CurAndonModel: {}
     };
@@ -116,7 +119,7 @@ export default {
           this.CurAndonModel = result.Data;
         } else {
           this.Config.CanAndon = true;
-          this.CurAndonModel = { TargetUser: "", ResponseTime: null, StartTime: null, EndTime: null, Status: null };
+          this.CurAndonModel = { Id: "", TargetUser: "", ResponseTime: null, StartTime: null, EndTime: null, Status: null };
         }
       });
     }

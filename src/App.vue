@@ -34,7 +34,7 @@
           >
             <el-menu-item>
               <a>
-                <img :src="BaseUrl + $root.CurUserModel.Photo">
+                <img :src="ImgUrl + $root.CurUserModel.Photo" style="width:40px;height:40px;">
                 <!-- <el-avatar shape="square" size="large" :src="BaseUrl + $root.CurUserModel.Photo"></el-avatar> -->
               </a>
             </el-menu-item>
@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       BaseUrl: process.env.VUE_APP_BaseUrl,
+      ImgUrl: process.env.VUE_APP_ImgUrl,
       activeIndex: "1"
     };
   },
