@@ -9,7 +9,7 @@
           <el-input placeholder="工单号" v-model="TaskModel.PlantOrder" :readonly="true"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="info">Andon历史</el-button>
+          <el-button type="info" @click="$router.push('/andonhis')">Andon历史</el-button>
         </el-form-item>
       </el-form>
     </el-header>
@@ -55,7 +55,7 @@ export default {
     });
   },
   methods: {
-
+    
   }
 }
 </script>

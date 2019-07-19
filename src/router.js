@@ -32,6 +32,11 @@ export default new Router({
       path: '/andon',
       name: 'andon',
       component: () => import('./views/Andon.vue')
+    },
+    {
+      path: '/andonhis',
+      name: 'andonhis',
+      component: () => import('./views/AndonHis.vue')
     }
   ]
 })

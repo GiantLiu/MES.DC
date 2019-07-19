@@ -20,6 +20,9 @@ let api = {
     },
     done(model){
         return service.post("/api/Andon/Done",model);
+    },
+    getHis(model){
+        return service.post("/api/Andon/GetHis", model);
     }
 };
 export default api;

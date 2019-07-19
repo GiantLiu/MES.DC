@@ -27,7 +27,7 @@
             <el-input v-model="CurAndonModel.EndTime" :readonly="true" placeholder="完成时间"></el-input>
           </el-form-item>
           <el-form-item label="状态">
-            <el-input  :value="statusName" :readonly="true" placeholder="状态"></el-input>
+            <el-input :value="statusName" :readonly="true" placeholder="状态"></el-input>
           </el-form-item>
         </el-form>
       </el-card>
@@ -35,12 +35,13 @@
         <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
         <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
         <el-button type="success" :disabled="CurAndonModel.Status != 2" @click="Config.ShowAndonDone = true">关闭</el-button>
-        <el-button type="info" @click="Config.ShowAndonDone = true">查看</el-button>
+        <el-button type="info" @click="Config.ShowAndonInfo = true">查看</el-button>
       </el-card>
       <andon-start :taskId="Config.TaskId" :andonType="Config.AndonType" :targetUserId="Config.User.Id" :visible.sync="Config.ShowAndonStart" @andonchange="getAndon"></andon-start>
       <andon-confirm :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonConfirm" @andonchange="getAndon"></andon-confirm>
       <andon-process :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonProcess" @andonchange="getAndon"></andon-process>
       <andon-done :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonDone" @andonchange="getAndon"></andon-done>
+      <andon-show :andon="CurAndonModel" :visible.sync="Config.ShowAndonInfo"></andon-show>
     </el-main>
   </el-container>
 </template>
@@ -51,10 +52,11 @@ import andonStart from "./Start.vue"
 import andonConfirm from "./Confirm.vue"
 import andonProcess from "./Process.vue"
 import andonDone from "./Done.vue"
+import andonShow from "./Show.vue"
 export default {
   name: 'userAndon',
   components: {
-    andonStart, andonConfirm, andonProcess, andonDone
+    andonStart, andonConfirm, andonProcess, andonDone, andonShow
   },
   props: {
     andonType: Number,
@@ -64,7 +66,7 @@ export default {
   data() {
     return {
       Config: {        ImgUrl: process.env.VUE_APP_ImgUrl, AndonType: this.andonType, TaskId: this.taskId, User: this.user, CanAndon: false,
-        ShowAndonStart: false, ShowAndonConfirm: false, ShowAndonProcess: false, ShowAndonDone: false      },
+        ShowAndonStart: false, ShowAndonConfirm: false, ShowAndonProcess: false, ShowAndonDone: false, ShowAndonInfo: false      },
       CurAndonModel: {}
     };
   },
