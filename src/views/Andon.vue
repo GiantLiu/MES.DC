@@ -28,35 +28,39 @@
           <user-andon :andonType="4" :taskId="TaskModel.Id" :user="TaskUser.Device"></user-andon>
         </el-col>
       </el-row>
+      <Login :visible.sync="Config.IsShowLogin" @loginSuccess="loginSuccess" />
     </el-main>
   </el-container>
 </template>
 
 <script>
 import andonSvc from "../api/andon"
+import Login from "@/components/Login.vue";
 import UserAndon from "../components/Andon/UserAndon.vue"
 export default {
   name: 'Andon',
   components: {
-    UserAndon
+    Login, UserAndon
   },
   data() {
     return {
+      Config: { IsShowLogin: true },
       TaskModel: {},
       TaskUser: {}
     }
   },
   mounted() {
-    this.$root.Config.ActiveMenuIndex ="2";
-    andonSvc.getCurTask().then(result => {
-      this.TaskModel = result.Data;
-      andonSvc.getTaskUser(result.Data.Id).then(result => {
-        this.TaskUser = result.Data;
-      });
-    });
+    this.$root.Config.ActiveMenuIndex = "2";
   },
   methods: {
-    
+    loginSuccess() {
+      andonSvc.getCurTask().then(result => {
+        this.TaskModel = result.Data;
+        andonSvc.getTaskUser(result.Data.Id).then(result => {
+          this.TaskUser = result.Data;
+        });
+      });
+    }
   }
 }
 </script>
