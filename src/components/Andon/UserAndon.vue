@@ -32,7 +32,7 @@
           </el-form-item>
         </el-form>
       </el-card>
-      <el-card>
+      <el-card style="text-align:center;">
         <el-button-group>
           <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
           <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
