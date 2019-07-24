@@ -5,6 +5,7 @@
         <div slot="header" class="clearfix">
           <span>{{andonTypeName}}</span>
           <el-button style="float: right; padding: 8px" type="warning" v-if="Config.CanAndon" @click="Config.ShowAndonStart=true">ANDON</el-button>
+          <el-button style="float: right; padding: 8px" type="info" v-if="!Config.CanAndon" @click="Config.ShowAndonInfo = true">查看</el-button>
         </div>
         <el-image style="height: 180px" :src="Config.ImgUrl+Config.User.Photo" fit="fill">
           <div slot="error" class="image-slot">
@@ -32,10 +33,11 @@
         </el-form>
       </el-card>
       <el-card>
-        <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
-        <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
-        <el-button type="success" :disabled="CurAndonModel.Status != 2" @click="Config.ShowAndonDone = true">关闭</el-button>
-        <el-button type="info" @click="Config.ShowAndonInfo = true">查看</el-button>
+        <el-button-group>
+          <el-button type="success" :disabled="CurAndonModel.Status != 0" @click="Config.ShowAndonConfirm = true">确认</el-button>
+          <el-button type="success" :disabled="CurAndonModel.Status != 1" @click="Config.ShowAndonProcess = true">处理</el-button>
+          <el-button type="success" :disabled="CurAndonModel.Status != 2" @click="Config.ShowAndonDone = true">关闭</el-button>
+        </el-button-group>
       </el-card>
       <andon-start :taskId="Config.TaskId" :andonType="Config.AndonType" :targetUserId="Config.User.Id" :visible.sync="Config.ShowAndonStart" @andonchange="getAndon"></andon-start>
       <andon-confirm :andonId="CurAndonModel.Id" :visible.sync="Config.ShowAndonConfirm" @andonchange="getAndon"></andon-confirm>
