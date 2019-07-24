@@ -14,7 +14,6 @@
           <span>Andon</span>
         </div>
         <router-link to="/andon"><img src="../assets/placeholder.png" class="image"></router-link>
-        
       </el-card>
     </el-col>
   </el-row>
