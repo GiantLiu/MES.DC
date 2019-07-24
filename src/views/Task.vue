@@ -36,7 +36,7 @@
         <el-button type="primary" plain icon="el-icon-arrow-right" title="下一页" @click="getPage(QueryModel.PageIndex+1)"></el-button>
         <el-button type="primary" plain icon="el-icon-d-arrow-right" title="尾页" @click="getPage(totalPages)"></el-button>
       </el-button-group>
-      <Login :loginDialogVisible="!$root.Config.IsAuthenticated" @loginSuccess="loginSuccess" />
+      <Login :visible.sync="Config.IsShowLogin" @loginSuccess="loginSuccess" />
     </el-footer>
   </el-container>
 </template>
@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      Config: { WindowHeight: window.innerHeight, TotalRows: 0 },
+      Config: { WindowHeight: window.innerHeight, TotalRows: 0, IsShowLogin: true },
       QueryModel: { OPid: null, qDate: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"), daytype: 0, SortDirection: 0, SortField: "Id", PageSize: 10, PageIndex: 1 },
       ListData: []
     };
@@ -63,7 +63,8 @@ export default {
       window.addEventListener('resize', () => {
         this.Config.WindowHeight = window.innerHeight;
       });
-    })
+    });
+    this.$root.Config.ActiveMenuIndex ="1";
   },
   computed: {
     totalPages() {

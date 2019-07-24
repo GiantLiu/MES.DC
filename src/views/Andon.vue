@@ -47,6 +47,7 @@ export default {
     }
   },
   mounted() {
+    this.$root.Config.ActiveMenuIndex ="2";
     andonSvc.getCurTask().then(result => {
       this.TaskModel = result.Data;
       andonSvc.getTaskUser(result.Data.Id).then(result => {

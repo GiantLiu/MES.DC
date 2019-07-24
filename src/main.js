@@ -11,7 +11,7 @@ new Vue({
   router,
   store,
   data: {
-    Config: { IsAuthenticated: false },
+    Config: { IsAuthenticated: false, ActiveMenuIndex: "0" },
     CurUserModel: {}
   },
   render: h => h(App)
